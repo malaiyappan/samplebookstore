@@ -1,0 +1,44 @@
+<%= form_for @daily_backup, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :server_ip, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :server_ip, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :bucket_name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :bucket_name, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :dbbackup, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :dbbackup, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :filesbackup, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :filesbackup, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :status, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :status, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :domain_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :domain_id, :class => 'number_field' %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                daily_backups_path, :class => 'btn' %>
+  </div>
+<% end %>

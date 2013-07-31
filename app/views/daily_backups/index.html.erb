@@ -1,0 +1,46 @@
+<%- model_class = DailyBackup -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:server_ip) %></th>
+      <th><%= model_class.human_attribute_name(:bucket_name) %></th>
+      <th><%= model_class.human_attribute_name(:dbbackup) %></th>
+      <th><%= model_class.human_attribute_name(:filesbackup) %></th>
+      <th><%= model_class.human_attribute_name(:status) %></th>
+      <th><%= model_class.human_attribute_name(:domain_id) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @daily_backups.each do |daily_backup| %>
+      <tr>
+        <td><%= link_to daily_backup.id, daily_backup_path(daily_backup) %></td>
+        <td><%= daily_backup.server_ip %></td>
+        <td><%= daily_backup.bucket_name %></td>
+        <td><%= daily_backup.dbbackup %></td>
+        <td><%= daily_backup.filesbackup %></td>
+        <td><%= daily_backup.status %></td>
+        <td><%= daily_backup.domain_id %></td>
+        <td><%=l daily_backup.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_daily_backup_path(daily_backup), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      daily_backup_path(daily_backup),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_daily_backup_path,
+            :class => 'btn btn-primary' %>
